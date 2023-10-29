@@ -1,3 +1,5 @@
 __pycache__/
 venv/
 scraper
+database.py
+main.py
