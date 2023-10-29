@@ -1,5 +1,6 @@
 __pycache__/
 venv/
-scraper
+parser/
 database.py
 main.py
+music_db.xml
