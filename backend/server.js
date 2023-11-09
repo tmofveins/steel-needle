@@ -4,9 +4,13 @@ const path = require("path");
 
 const PORT = process.env.PORT || 3500;
 
+app.use(express.json);
+
 app.use("/", express.static(path.join(__dirname, "/public")));
 
 app.use("/", require("./routes/root"));
+
+app.use("/routes", require("./routes/songRoutes"));
 
 // 404 page handling for invalid routes
 app.all("*", (req, res) => {
