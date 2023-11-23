@@ -1,7 +1,4 @@
-const sqlite = require("sqlite3").verbose();
-
-const db = new sqlite.Database("../song_data.sqlite", sqlite.OPEN_READONLY, (err) => {
-    if (err) return console.error(err);
-});
+const Database = require("better-sqlite3");
+const db = new Database("../song_data.sqlite", { verbose: console.log });
 
 module.exports = db;

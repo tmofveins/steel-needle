@@ -3,7 +3,7 @@ const router = express.Router();
 const songsController = require("../controllers/songsController");
 
 router.route("/")
-    .get()
+    .get(songsController.getAllSongs)
     .post()
     .patch()
     .delete()

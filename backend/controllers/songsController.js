@@ -1,8 +1,16 @@
-const asyncHandler = require("express-async-handler");
+const db = require("../db.js");
 
-const getAllSongs = asyncHandler(async(req, res) => {
-
-});
+const getAllSongs = (req, res) => {
+    const statement = db.prepare("SELECT * FROM Song");
+    
+    try {
+        const songs = statement.all();
+        if (!songs.length) return res.status(400).json({ message: "No songs found" });
+        res.json(songs);
+    } catch (err) {
+        console.error(err.message);
+    }
+};
 
 module.exports = {
     getAllSongs,
