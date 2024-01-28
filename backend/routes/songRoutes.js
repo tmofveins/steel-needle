@@ -4,8 +4,8 @@ const songsController = require("../controllers/songsController");
 
 router.route("/")
     .get(songsController.getAllSongs)
-    .post()
-    .patch()
-    .delete()
+    .post(songsController.createNewSong)
+    .patch(songsController.updateSong)
+    .delete(songsController.deleteSong)
 
 module.exports = router;
