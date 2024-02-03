@@ -30,9 +30,20 @@ const deleteSong = (req, res) => {
 
 };
 
+const searchSong = (req, res) => {
+    const results = db.searchSongs(req.query.term);
+    res.json(results);
+};
+
+const getRandomSong = (req, res) => {
+
+};
+
 module.exports = {
     getAllSongs,
     createNewSong,
     updateSong,
     deleteSong,
+    searchSong, 
+    getRandomSong,
 }

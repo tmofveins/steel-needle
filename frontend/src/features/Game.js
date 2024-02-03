@@ -1,6 +1,10 @@
+import SearchBar from "./SearchBar";
+
 const Game = () => {
     const content = (
-        <p>TODO</p>
+        <>
+        <SearchBar/>
+        </>
     );
 
     return content;

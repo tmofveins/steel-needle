@@ -8,4 +8,10 @@ router.route("/")
     .patch(songsController.updateSong)
     .delete(songsController.deleteSong)
 
+router.route("/search")
+    .get(songsController.searchSong)
+
+router.route("/random")
+    .get(songsController.getRandomSong)
+
 module.exports = router;

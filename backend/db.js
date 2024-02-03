@@ -35,6 +35,20 @@ class sqliteDB {
             return [];
         }
     }
+    
+    searchSongs(term) {
+        const searchTerm = `%${term}%`;
+        const query = this.db.prepare(`
+            SELECT * FROM Song
+            WHERE song_title LIKE ?
+            OR title_romaji LIKE ?
+            OR title_ascii LIKE ?
+        `);
+
+        const results = query.all(searchTerm, searchTerm, searchTerm);
+        console.log(results);
+        return results;
+    }
 
     close() {
         this.db.close();
