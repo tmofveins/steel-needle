@@ -32,3 +32,20 @@ body {
   font-style: italic; /* Italicize the font */
 }
 
+.home-button {
+  position: fixed; /* Keeps the button in the same place on the screen */
+  bottom: 20px; /* Distance from the bottom of the viewport */
+  right: 20px; /* Distance from the right side of the viewport */
+  z-index: 100; /* Ensures the button is above other content */
+  padding: 10px;
+  background-color: #007bff; /* Example background color */
+  color: white; /* Text color */
+  border: none;
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Changes cursor to pointer on hover */
+}
+
+/* Additional styles for hover effect */
+.home-button:hover {
+  background-color: #0056b3;
+}

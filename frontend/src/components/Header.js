@@ -1,6 +1,10 @@
+import { Link } from "react-router-dom";
+
 const Header = () => {
     const content = (
-        <h1>Steel Needle</h1>
+        <h1>
+            <Link to="/">Steel Needle</Link>
+        </h1>
     );
 
     return content;

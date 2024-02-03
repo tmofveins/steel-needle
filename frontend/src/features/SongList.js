@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import HomeButton from "../components/HomeButton";
 
 const Song = ({ song }) => {
     return (
@@ -20,9 +21,12 @@ const SongList = () => {
     }, []);
 
     const content = (
+        <>
+        <HomeButton/>
         <div className="grid-container">
             {songs.map(song => <Song key={song.song_id} song={song}/>)}
         </div>
+        </>
     );
 
     return content;
