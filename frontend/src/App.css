@@ -1,38 +1,34 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: Arial, sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.grid-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center; /* Adjusted to center the items */
+  gap: 20px;
+  padding: 20px;
+  max-width: 800px; /* Set a max-width for the container */
+  margin: auto; /* Center the container on the screen */
 }
 
-.App-link {
-  color: #61dafb;
+.grid-item {
+  border: 5px solid #ccc;
+  padding: 10px;
+  width: 100%; /* Ensure grid items expand to fill the container */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.item-header {
+  font-size: 1.5em; /* Larger font size for header */
 }
+
+.item-value, .item-description {
+  font-size: 0.9em; /* Smaller font size for other texts */
+  font-style: italic; /* Italicize the font */
+}
+

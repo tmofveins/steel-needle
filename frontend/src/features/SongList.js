@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 
 const Song = ({ song }) => {
     return (
-        <div>
-            <h3>{song.song_id}</h3>
-            <h3>{song.song_title}</h3>
+        <div className="grid-item">
+            <div className="item-header">{song.song_title}</div>
+            <div className="item-value">{song.title_romaji} / {song.artist}</div>
         </div>
     );
 }
@@ -20,7 +20,7 @@ const SongList = () => {
     }, []);
 
     const content = (
-        <div>
+        <div className="grid-container">
             {songs.map(song => <Song key={song.song_id} song={song}/>)}
         </div>
     );

@@ -5,6 +5,8 @@ import Landing from "./components/Landing";
 import Game from "./features/Game";
 import SongList from "./features/SongList";
 
+import "./App.css";
+
 function App() {
   return (
     <Routes>
