@@ -11,7 +11,6 @@ function SearchBar() {
                         .then(res => res.json())
                         .then(data => setSearchResults(data))
                         .catch(err => console.error("Song search failed:", err));
-            
         }
     };
 
@@ -37,15 +36,10 @@ function SearchBar() {
     </div>
 
     <ul>
-        {searchResults?.map(song => 
-            <li key={song.song_id}>{song.song_title}</li>
-        )}
+        {searchResults.length ? searchResults?.map(song => 
+            <li key={song.song_id}>{song.song_title}</li>)
+        : <p>No matches found.</p>}
     </ul>
-
-    <br></br>
-    <button onClick={() => {
-        fetch("http://localhost:3500/songs/search?term=style").then(response=>response.json().then(data => console.log(data)))
-        }}>test</button>
     </>
   );
 }
