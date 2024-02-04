@@ -1,4 +1,4 @@
-import SearchBar from "./SearchBar";
+import SearchBar from "../components/SearchBar";
 
 const Game = () => {
     const content = (

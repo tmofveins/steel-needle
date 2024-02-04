@@ -1,14 +1,6 @@
 import React, { useState, useEffect } from "react";
 import HomeButton from "../components/HomeButton";
-
-const Song = ({ song }) => {
-    return (
-        <div className="grid-item">
-            <div className="item-header">{song.song_title}</div>
-            <div className="item-value">{song.title_romaji} / {song.artist}</div>
-        </div>
-    );
-}
+import GridItem from "../components/GridItem";
 
 const SongList = () => {
     const [songs, setSongs] = useState([]);
@@ -24,7 +16,7 @@ const SongList = () => {
         <>
         <HomeButton/>
         <div className="grid-container">
-            {songs.map(song => <Song key={song.song_id} song={song}/>)}
+            {songs.map(song => <GridItem key={song.song_id} song={song}/>)}
         </div>
         </>
     );

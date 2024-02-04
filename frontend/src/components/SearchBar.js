@@ -25,22 +25,25 @@ function SearchBar() {
   }, [searchTerm]);
 
   return (
-    <>
-    <div>
-      <input
-        type="text"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        placeholder="Type in your guess..."
-      />
-    </div>
+    <div className="search-container">
+        <input
+          className="search-bar"
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Type in your guess..."
+        />
 
-    <ul>
-        {searchResults.length ? searchResults?.map(song => 
-            <li key={song.song_id}>{song.song_title}</li>)
-        : <p>No matches found.</p>}
-    </ul>
-    </>
+      <div className='dropdown-content'>
+          {
+            searchTerm && (
+                searchResults.length 
+                    ? searchResults?.map(song => <div key={song.song_id}>{song.song_title}</div>)
+                    : <p>No matches found.</p>
+            )
+          }
+      </div>
+    </div>
   );
 }
 
