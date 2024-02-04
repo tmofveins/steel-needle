@@ -27,7 +27,7 @@ function SearchBar() {
   }, [searchTerm]);
 
   const handleRandomSong = () => {
-      fetch("http://localhost:3500/songs/random")
+      fetch("http://localhost:3500/songs/random/17up")
         .then(res => res.json())
         .then(data => setRandomSong(data))
         .catch(err => console.error("Random song search failed:", err));

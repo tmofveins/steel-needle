@@ -30,6 +30,13 @@ const getRandomSong = (req, res) => {
     res.json(song);
 };
 
+const getRandomSong17AndAbove = (req, res) => {
+    const song = db.getRandomSong17AndAbove();
+    if (!song.length) return res.status(400).json({ message: "Couldn't get random song" });
+    console.log(song);
+    res.json(song);
+};
+
 module.exports = {
     getAllSongs,
     createNewSong,
@@ -37,4 +44,5 @@ module.exports = {
     deleteSong,
     searchSong, 
     getRandomSong,
+    getRandomSong17AndAbove,
 }

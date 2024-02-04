@@ -14,4 +14,7 @@ router.route("/search")
 router.route("/random")
     .get(songsController.getRandomSong)
 
+router.route("/random/17up")
+    .get(songsController.getRandomSong17AndAbove)
+
 module.exports = router;

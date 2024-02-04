@@ -45,6 +45,17 @@ class sqliteDB {
         const result = query.all();
         return result;
     }
+
+    getRandomSong17AndAbove() {
+        const query = this.db.prepare(`
+            SELECT * FROM Song
+            WHERE CAST(diff_level AS INT) > 16
+            ORDER BY RANDOM()
+            LIMIT 1
+        `)
+        const result = query.all();
+        return result;
+    }
     
     searchSongs(term) {
         const searchTerm = `%${term}%`;
