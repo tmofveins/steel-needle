@@ -6,6 +6,16 @@ body {
   font-family: Arial, sans-serif;
 }
 
+.header {
+  display: flex;
+  justify-content: center;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+}
+
 .grid-container {
   display: flex;
   flex-direction: column;

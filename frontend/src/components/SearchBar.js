@@ -39,7 +39,7 @@ function SearchBar() {
             searchTerm && (
                 searchResults.length 
                     ? searchResults?.map(song => <div key={song.song_id}>{song.song_title}</div>)
-                    : <p>No matches found.</p>
+                    : <div>No matches found.</div>
             )
           }
       </div>
