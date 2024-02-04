@@ -35,6 +35,16 @@ class sqliteDB {
             return [];
         }
     }
+
+    getRandomSong() {
+        const query = this.db.prepare(`
+            SELECT * FROM Song
+            ORDER BY RANDOM()
+            LIMIT 1
+        `)
+        const result = query.all();
+        return result;
+    }
     
     searchSongs(term) {
         const searchTerm = `%${term}%`;
