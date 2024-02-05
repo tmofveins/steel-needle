@@ -1,9 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 
-import Layout from "./components/Layout";
-import Landing from "./components/Landing";
-import Game from "./features/Game";
-import SongList from "./features/SongList";
+import Layout from "./views/Layout";
+import Landing from "./views/Landing";
+import Game from "./views/Game";
+import SongList from "./views/SongList";
 
 import "./App.css";
 
