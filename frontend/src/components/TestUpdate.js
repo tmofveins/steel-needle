@@ -26,7 +26,7 @@ const TestUpdate = () => {
     return (
         <div>
             <button onClick={handleUpdateSong}>
-            Update and display song
+            Update song (check database for results)
             </button>
 
             <div>

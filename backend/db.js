@@ -41,6 +41,7 @@ class sqliteDB {
     getRandomSong() {
         const query = this.db.prepare(`
             SELECT * FROM Song
+            WHERE used = 0
             ORDER BY RANDOM()
             LIMIT 1
         `)
@@ -51,7 +52,7 @@ class sqliteDB {
     getRandomSong17AndAbove() {
         const query = this.db.prepare(`
             SELECT * FROM Song
-            WHERE CAST(diff_level AS INT) > 16
+            WHERE CAST(diff_level AS INT) > 16 AND used = 0
             ORDER BY RANDOM()
             LIMIT 1
         `)
