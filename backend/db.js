@@ -21,7 +21,9 @@ class sqliteDB {
                 version TEXT NOT NULL,
                 diff_level TEXT NOT NULL,
                 diff_name TEXT NOT NULL,
-                chart_type TEXT NOT NULL
+                chart_type TEXT NOT NULL,
+                used INTEGER DEFAULT 0 NOT NULL,
+                date_used TEXT
             )
         `).run();
     }
@@ -56,6 +58,18 @@ class sqliteDB {
         const result = query.all();
         return result;
     }
+
+    updateSong(id, date) {
+        const songID = id;
+        const dateUsed = date;
+        const query = this.db.prepare(`
+            UPDATE Song
+            SET used = 1, date_used = ?
+            WHERE song_id = ?
+        `);
+        const result = query.run(dateUsed, songID);
+        return result;
+    }
     
     searchSongs(term) {
         const searchTerm = `%${term}%`;
@@ -67,7 +81,6 @@ class sqliteDB {
         `);
 
         const results = query.all(searchTerm, searchTerm, searchTerm);
-        console.log(results);
         return results;
     }
 

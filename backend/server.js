@@ -7,7 +7,7 @@ const PORT = 3500;
 
 const corsOptions = {
     origin: "http://localhost:3000",
-    methods: "GET",
+    methods: ["GET", "PATCH"],
     allowedHeaders: "Content-Type",
 }
 app.use(cors(corsOptions));

@@ -11,7 +11,12 @@ const createNewSong = (req, res) => {
 };
 
 const updateSong = (req, res) => {
-
+    const { id } = req.params;
+    const { date } = req.body;
+    console.log(req.params);
+    const updatedSong = db.updateSong(id, date);
+    if (!updatedSong) return res.status(404).json({ message: "Song not found" });
+    res.json(updatedSong);
 };
 
 const deleteSong = (req, res) => {
@@ -26,14 +31,12 @@ const searchSong = (req, res) => {
 const getRandomSong = (req, res) => {
     const song = db.getRandomSong();
     if (!song.length) return res.status(400).json({ message: "Couldn't get random song" });
-    console.log(song);
     res.json(song);
 };
 
 const getRandomSong17AndAbove = (req, res) => {
     const song = db.getRandomSong17AndAbove();
     if (!song.length) return res.status(400).json({ message: "Couldn't get random song" });
-    console.log(song);
     res.json(song);
 };
 

@@ -4,9 +4,9 @@ const songsController = require("../controllers/songsController");
 
 router.route("/")
     .get(songsController.getAllSongs)
-    .post(songsController.createNewSong)
+
+router.route("/:id")
     .patch(songsController.updateSong)
-    .delete(songsController.deleteSong)
 
 router.route("/search")
     .get(songsController.searchSong)
