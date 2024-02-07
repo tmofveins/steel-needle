@@ -9,8 +9,6 @@ const TestRandom = () => {
           .then(res => res.json())
           .then(data => setRandomSong(data))
           .catch(err => console.error("Random song search failed:", err));
-  
-        console.log(randomSong);
     }
   
     return (

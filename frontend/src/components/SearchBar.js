@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function SearchBar() {
+const SearchBar = ({onGuess}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
@@ -23,24 +23,33 @@ function SearchBar() {
       clearTimeout(timeoutId);
     };
   }, [searchTerm]);
-
   
   return (
     <>
     <div className="search-container">
-        <input
-          className="search-bar"
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Type in your guess..."
-        />
+      <input
+        className="search-bar"
+        type="text"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        placeholder="Type in your guess..."
+      />
 
       <div className='dropdown-content'>
           {
             searchTerm && (
                 searchResults.length 
-                    ? searchResults?.map(song => <div key={song.song_id}>{song.song_title}</div>)
+                    ? searchResults?.map(song => 
+                          <div 
+                            key={song.song_id}
+                            onClick={() => {
+                              setSearchTerm(song.song_title);
+                              onGuess(song.song_title);
+                            }}
+                          >
+                            {song.song_title}
+                          </div>
+                      )
                     : <div>No matches found.</div>
             )
           }
