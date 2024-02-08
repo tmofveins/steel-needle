@@ -110,3 +110,41 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   z-index: 1000;
 }
+
+.guess-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.song-info {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.feedback-squares {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.cell {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+}
+
+.cell-green {
+  background-color: green;
+}
+
+.cell-yellow {
+  background-color: yellow;
+}
+
+.cell-red {
+  background-color: red;
+}

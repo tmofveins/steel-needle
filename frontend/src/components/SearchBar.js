@@ -44,7 +44,7 @@ const SearchBar = ({onGuess}) => {
                             key={song.song_id}
                             onClick={() => {
                               setSearchTerm(song.song_title);
-                              onGuess(song.song_title);
+                              onGuess(song);
                             }}
                           >
                             {song.song_title}
