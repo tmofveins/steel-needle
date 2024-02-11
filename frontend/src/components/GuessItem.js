@@ -1,31 +1,64 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
+
 const GuessItem = ({guess, feedback}) => {
-  const getColor = (feedbackValue) => {
+  const getFeedbackDetails = (feedbackValue) => {
+    let icon = null, color = "";
+
     switch (feedbackValue) {
       case 'G':
-        return "cell-green";
+        color = "cell-green";
+        break;
       case 'Y':
-        return "cell-yellow";
+        color = "cell-yellow";
+        break;
+      case 'YU':
+        icon = faArrowUp;
+        color = "cell-yellow";
+        break;
+      case 'YD':
+        icon = faArrowDown;
+        color = "cell-yellow";
+        break;
       case 'R':
-        return "cell-red";
+        color =  "cell-red";
+        break;
+      case 'RU':
+        icon = faArrowUp;
+        color =  "cell-red";
+        break;
+      case 'RD':
+        icon = faArrowDown;
+        color =  "cell-red";
+        break;
       default:
-        return "";
+        break;
     }
+
+    return {icon, color};
   }
 
-  const {song_title, artist, ...feedbackFields} = guess;
+  const {song_id, title_romaji, title_ascii, used, date_used,
+          song_title, artist, ...feedbackFields} = guess;
+        
+  guess.date = guess.date.slice(0,4);
 
   return (
     <div className="guess-item">
         <div className="song-info">{song_title} / {artist}</div>
         <div className="feedback-squares">
-          {Object.keys(feedbackFields).map(key => (
-            <div key={key} className={`cell ${getColor(feedback[key])}`}>
-              {guess[key]}
-            </div>
-          ))}
+          {Object.entries(feedback).map(([key, value]) => {
+            const {icon, color} = getFeedbackDetails(value);
+            return (
+              <div key={key} className={`cell ${color}`}>
+                {icon && <FontAwesomeIcon icon={icon}/>}
+                {guess[key]}
+              </div>
+            );
+          })}
         </div>
     </div>
   )
 }
 
-export default GuessItem
+export default GuessItem;

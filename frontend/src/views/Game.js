@@ -54,12 +54,53 @@ const Game = () => {
         if (guess.song_id === solution.song_id) {
             Object.keys(feedback).forEach(key => {feedback[key] = 'G'});
         } else {
-            if (guess.bpm === solution.bpm) feedback.bpm = 'G'
-            if (guess.date.slice(0, 4) === solution.date.slice(0, 4)) feedback.date = 'G';
-            if (guess.version === solution.version) feedback.version = 'G';
-            if (guess.diff_level === solution.diff_level) feedback.diff_level = 'G';
-            if (guess.diff_name === solution.diff_name) feedback.diff_name = 'G';
-            if (guess.chart_type === solution.chart_type) feedback.chart_type = 'G';
+            const guessBPM = parseFloat(guess.bpm);
+            const solutionBPM = parseFloat(solution.bpm);
+
+            if (guessBPM === solutionBPM) { 
+                feedback.bpm = 'G';
+            } else {
+                
+            }
+
+            const guessDate = parseFloat(guess.date.slice(0,4));
+            const solutionDate = parseFloat(solution.date.slice(0,4));
+
+            if (guessDate === solutionDate) {
+                feedback.date = 'G';
+            } else {
+                feedback.date = guessDate > solutionDate ? 'RD' : 'RU';
+            }
+
+            const guessVersion = parseFloat(guess.version);
+            const solutionVersion = parseFloat(solution.version);
+
+            if (guess.version === solution.version) {
+                feedback.version = 'G';
+            } else {
+                feedback.version = guessVersion > solutionVersion ? 'RD' : 'RU';
+            }
+
+            const guessDiffLevel = parseFloat(guess.version);
+            const solutionDiffLevel = parseFloat(solution.version);
+
+            if (guessDiffLevel === solutionDiffLevel) {
+                feedback.diff_level = 'G';
+            } else {
+                feedback.diff_level = guessDiffLevel > solutionDiffLevel ? 'RD' : 'RU';
+            }
+
+            if (guess.diff_name === solution.diff_name) {
+                feedback.diff_name = 'G';
+            } else {
+                feedback.diff_name = 'R';
+            }
+
+            if (guess.chart_type === solution.chart_type) {
+                feedback.chart_type = 'G';
+            } else {
+                feedback.chart_type = 'R';
+            }
         }
     
         console.log(feedback);
