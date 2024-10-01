@@ -11,7 +11,7 @@ class sqliteDB {
     init() {
         this.db.prepare(`
             CREATE TABLE IF NOT EXISTS Song(
-                song_id INTEGER PRIMARY KEY,
+                song_id TEXT PRIMARY KEY,
                 song_title TEXT NOT NULL,
                 title_romaji TEXT NOT NULL,
                 title_ascii TEXT NOT NULL,
@@ -28,14 +28,32 @@ class sqliteDB {
         `).run();
     }
 
+    // Create: Add a new song to the database
+    createNewSong(song) {
+        const insert = this.db.prepare(`
+            INSERT INTO Song (
+                song_id, song_title, title_romaji, title_ascii, artist, bpm, date, version, diff_level, diff_name, chart_type
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        `);
+        const info = insert.run(
+            song.song_id,
+            song.song_title,
+            song.title_romaji,
+            song.title_ascii,
+            song.artist,
+            song.bpm,
+            song.date,
+            song.version,
+            song.diff_level,
+            song.diff_name,
+            song.chart_type
+        );
+        return info.changes;
+    }
+
     getAllSongs() {
-        try {
-            const query = this.db.prepare(`SELECT * FROM Song`);
-            return query.all();
-        } catch (err) {
-            console.error("Error fetching songs: ", err.message);
-            return [];
-        }
+        const query = this.db.prepare(`SELECT * FROM Song`);
+        return query.all();
     }
 
     getRandomSong() {
@@ -45,7 +63,7 @@ class sqliteDB {
             ORDER BY RANDOM()
             LIMIT 1
         `)
-        const result = query.all();
+        const result = query.get();
         return result;
     }
 
@@ -56,11 +74,11 @@ class sqliteDB {
             ORDER BY RANDOM()
             LIMIT 1
         `)
-        const result = query.all();
+        const result = query.get();
         return result;
     }
 
-    updateSong(id, date) {
+    updateSongAsUsed(id, date) {
         const songID = id;
         const dateUsed = date;
         const query = this.db.prepare(`
@@ -68,8 +86,8 @@ class sqliteDB {
             SET used = 1, date_used = ?
             WHERE song_id = ?
         `);
-        const result = query.run(dateUsed, songID);
-        return result;
+        const info = query.run(dateUsed, songID);
+        return info;
     }
     
     searchSongs(term) {
@@ -83,6 +101,12 @@ class sqliteDB {
 
         const results = query.all(searchTerm, searchTerm, searchTerm);
         return results;
+    }
+
+    deleteSong(id) {
+        const query = this.db.prepare(`DELETE FROM Song WHERE song_id = ?`);
+        const info = query.run(id);
+        return info.changes > 0;
     }
 
     close() {
