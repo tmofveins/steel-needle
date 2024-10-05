@@ -16,7 +16,7 @@ const Game = () => {
         fetch("http://localhost:3500/songs/random/17up")
             .then(res => res.json())
             .then(data => {
-                setSolution(data[0]);
+                setSolution(data    );
                 setLoading(false);
                 console.log("solution:",data);
             })
@@ -38,6 +38,13 @@ const Game = () => {
     const handleUserGuess = (guess) => {
         const feedback = analyzeGuess(guess, solution);
         setGuesses([...guesses, {guess, feedback}]);
+    }
+
+    function countChartTypeMatches(guessChartType, solutionChartType) {
+        let guessSet = new Set(guessChartType);
+        let solutionSet = new Set(solutionChartType);
+
+        return guessSet.intersection(solutionSet).length;
     }
 
     function analyzeGuess(guess, solution) {
@@ -63,8 +70,8 @@ const Game = () => {
                 
             }
 
-            const guessDate = parseFloat(guess.date.slice(0,4));
-            const solutionDate = parseFloat(solution.date.slice(0,4));
+            const guessDate = parseInt(guess.date.slice(0,4));
+            const solutionDate = parseInt(solution.date.slice(0,4));
 
             if (guessDate === solutionDate) {
                 feedback.date = 'G';
@@ -72,8 +79,8 @@ const Game = () => {
                 feedback.date = guessDate > solutionDate ? 'RD' : 'RU';
             }
 
-            const guessVersion = parseFloat(guess.version);
-            const solutionVersion = parseFloat(solution.version);
+            const guessVersion = parseInt(guess.diff_level);
+            const solutionVersion = parseInt(solution.diff_level);
 
             if (guess.version === solution.version) {
                 feedback.version = 'G';
@@ -81,8 +88,8 @@ const Game = () => {
                 feedback.version = guessVersion > solutionVersion ? 'RD' : 'RU';
             }
 
-            const guessDiffLevel = parseFloat(guess.version);
-            const solutionDiffLevel = parseFloat(solution.version);
+            const guessDiffLevel = parseInt(guess.version);
+            const solutionDiffLevel = parseInt(solution.version);
 
             if (guessDiffLevel === solutionDiffLevel) {
                 feedback.diff_level = 'G';
@@ -96,10 +103,15 @@ const Game = () => {
                 feedback.diff_name = 'R';
             }
 
-            if (guess.chart_type === solution.chart_type) {
+            
+            const chartTypeMatches = countChartTypeMatches(guess.chart_type, solution.chart_type);
+
+            if (chartTypeMatches === 3) {
                 feedback.chart_type = 'G';
-            } else {
+            } else if (chartTypeMatches === 0) {
                 feedback.chart_type = 'R';
+            } else {
+                feedback.chart_type = 'Y';
             }
         }
     

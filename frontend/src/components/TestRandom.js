@@ -7,10 +7,13 @@ const TestRandom = () => {
     const handleRandomSong = () => {
         fetch("http://localhost:3500/songs/random/17up")
           .then(res => res.json())
-          .then(data => setRandomSong(data))
+          .then(data => {
+            console.log("Data fetched:", data);
+            setRandomSong(data);
+          })
           .catch(err => console.error("Random song search failed:", err));
     }
-  
+
     return (
         <div>
             <button onClick={handleRandomSong}>
@@ -19,11 +22,13 @@ const TestRandom = () => {
 
             <div>
                 {
-                randomSong && <GridItem key={randomSong[0].song_id} song={randomSong[0]}/>
+                randomSong
+                    ? <GridItem key={randomSong.song_id} song={randomSong}/>
+                    : <p>Loading...</p>
                 }
             </div>
         </div>
     );
 }
 
-export default TestRandom
+export default TestRandom;
