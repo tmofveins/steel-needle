@@ -37,7 +37,7 @@ const Game = () => {
 
     const handleUserGuess = (guess) => {
         const feedback = analyzeGuess(guess, solution);
-        setGuesses([{guess, feedback}, ...guesses]);
+        setGuesses((prevGuesses) => [{guess, feedback}, ...prevGuesses]);
     }
 
     function countChartTypeMatches(guessChartType, solutionChartType) {
@@ -126,8 +126,6 @@ const Game = () => {
                 <GuessItem key={index} guess={item.guess} feedback={item.feedback}/>
             ))}
         </div>
-        <TestRandom/>
-        <TestUpdate/>
         <HelpButton/>
         </>
     );
