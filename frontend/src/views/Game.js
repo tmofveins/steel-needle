@@ -16,7 +16,7 @@ const Game = () => {
         fetch("http://localhost:3500/songs/random/17up")
             .then(res => res.json())
             .then(data => {
-                setSolution(data    );
+                setSolution(data);
                 setLoading(false);
                 console.log("solution:",data);
             })
@@ -37,7 +37,7 @@ const Game = () => {
 
     const handleUserGuess = (guess) => {
         const feedback = analyzeGuess(guess, solution);
-        setGuesses([...guesses, {guess, feedback}]);
+        setGuesses([{guess, feedback}, ...guesses]);
     }
 
     function countChartTypeMatches(guessChartType, solutionChartType) {
@@ -102,7 +102,6 @@ const Game = () => {
             } else {
                 feedback.diff_name = 'R';
             }
-
             
             const chartTypeMatches = countChartTypeMatches(guess.chart_type, solution.chart_type);
 
