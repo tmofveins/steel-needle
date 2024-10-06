@@ -79,17 +79,17 @@ const Game = () => {
                 feedback.date = guessDate > solutionDate ? 'RD' : 'RU';
             }
 
-            const guessVersion = parseInt(guess.diff_level);
-            const solutionVersion = parseInt(solution.diff_level);
+            const guessVersion = parseInt(guess.version);
+            const solutionVersion = parseInt(solution.version);
 
-            if (guess.version === solution.version) {
+            if (guessVersion === solutionVersion) {
                 feedback.version = 'G';
             } else {
                 feedback.version = guessVersion > solutionVersion ? 'RD' : 'RU';
             }
 
-            const guessDiffLevel = parseInt(guess.version);
-            const solutionDiffLevel = parseInt(solution.version);
+            const guessDiffLevel = parseInt(guess.diff_level);
+            const solutionDiffLevel = parseInt(solution.diff_level);
 
             if (guessDiffLevel === solutionDiffLevel) {
                 feedback.diff_level = 'G';
